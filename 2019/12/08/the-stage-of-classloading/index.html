@@ -7,17 +7,17 @@
   
   
   
-  <title>the-stage-of-classloading | 旧时明月</title>
+  <title>类加载器的阶段 | 旧时明月</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="@TOC 在java代码中，类的加载、连接与初始化过程都是在程序运行期间完成的 类加载器的阶段类加载过程分为：加载、连接、初始化三个大的阶段，其中连接又可以细分为验证、准备、解析三个过程。 加载查找并加载类的二进制数据，在此阶段，虚拟机完成以下3件事情：  通过一个类的权限定类名来获取定义此类的二进制字节流。 将这个字节流所代表的的静态存储结构转化为方法区的运行时数据结构。 在内存中生成一个代表">
 <meta name="keywords" content="classLoader">
 <meta property="og:type" content="article">
-<meta property="og:title" content="the-stage-of-classloading">
+<meta property="og:title" content="类加载器的阶段">
 <meta property="og:url" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;2019&#x2F;12&#x2F;08&#x2F;the-stage-of-classloading&#x2F;index.html">
 <meta property="og:site_name" content="旧时明月">
 <meta property="og:description" content="@TOC 在java代码中，类的加载、连接与初始化过程都是在程序运行期间完成的 类加载器的阶段类加载过程分为：加载、连接、初始化三个大的阶段，其中连接又可以细分为验证、准备、解析三个过程。 加载查找并加载类的二进制数据，在此阶段，虚拟机完成以下3件事情：  通过一个类的权限定类名来获取定义此类的二进制字节流。 将这个字节流所代表的的静态存储结构转化为方法区的运行时数据结构。 在内存中生成一个代表">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T14:54:45.109Z">
+<meta property="og:updated_time" content="2019-12-08T15:14:19.392Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="旧时明月" type="application/atom+xml">
@@ -196,7 +196,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/classLoader/" style="font-size: 10px;">classLoader</a> <a href="/tags/sparseArray/" style="font-size: 10px;">sparseArray</a>
+                        <a href="/tags/classLoader/" style="font-size: 10px;">classLoader</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/sparseArray/" style="font-size: 10px;">sparseArray</a>
                     </div>
                 </section>
                 
@@ -279,7 +279,7 @@
   
     <div class="article-meta">
       <a  href="/2019/12/08/the-stage-of-classloading/" class="article-date">
-      <time datetime="2019-12-08T14:51:48.000Z" itemprop="datePublished">2019-12-08</time>
+      <time datetime="2019-12-08T15:13:36.000Z" itemprop="datePublished">2019-12-08</time>
 </a>
 
     </div>
@@ -293,7 +293,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      the-stage-of-classloading
+      类加载器的阶段
     </h1>
   
 
@@ -379,12 +379,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2019/12/08/the-stage-of-classloading/">the-stage-of-classloading</a></p>
+        <p><span>本文标题:</span><a  href="/2019/12/08/the-stage-of-classloading/">类加载器的阶段</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 旧时明月 的个人博客">旧时明月</a></p>
-        <p><span>发布时间:</span>2019年12月08日 - 22时51分</p>
-        <p><span>最后更新:</span>2019年12月08日 - 22时54分</p>
+        <p><span>发布时间:</span>2019年12月08日 - 23时13分</p>
+        <p><span>最后更新:</span>2019年12月08日 - 23时14分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/12/08/the-stage-of-classloading/" title="the-stage-of-classloading">http://www.ithushuai.com/2019/12/08/the-stage-of-classloading/</a>
+            <span>原始链接:</span><a class="post-url" href="/2019/12/08/the-stage-of-classloading/" title="类加载器的阶段">http://www.ithushuai.com/2019/12/08/the-stage-of-classloading/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.ithushuai.com/2019/12/08/the-stage-of-classloading/　　作者: 旧时明月" title=""></span>
         </p>
         <p>
@@ -396,18 +396,9 @@
 
 <nav id="article-nav">
   
-    <a  href="/2019/12/08/SparseArray/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          SparseArray
-        
-      </div>
-    </a>
   
-  
-    <a  href="/2019/12/08/static-variable-how2be-assigned/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java类中静态变量是如何被赋值的</div>
+    <a  href="/2019/12/08/SparseArray/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">稀疏数组的实现</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -492,18 +483,16 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2019/12/08/SparseArray/" title="上一篇: SparseArray">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2019/12/08/static-variable-how2be-assigned/" title="下一篇: java类中静态变量是如何被赋值的">
+            <a  href="/2019/12/08/SparseArray/" title="下一篇: 稀疏数组的实现">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/SparseArray/">SparseArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/the-stage-of-classloading/">the-stage-of-classloading</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/static-variable-how2be-assigned/">java类中静态变量是如何被赋值的</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/the-stage-of-classloading/">类加载器的阶段</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/SparseArray/">稀疏数组的实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/jdk8features/">JDK8新特性之函数式接口</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/static-variable-how2be-assigned/">java类中静态变量是如何被赋值的</a></li></ul>
     
 <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
