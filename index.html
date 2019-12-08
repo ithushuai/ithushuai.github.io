@@ -65,7 +65,7 @@
             
         </a>
         <hgroup>
-          <h1 class="header-author"><a href="/">胡帅</a></h1>
+          <h1 class="header-author"><a href="/">旧时明月</a></h1>
         </hgroup>
         
         <p class="header-subtitle">旧时明月</p>
@@ -229,7 +229,7 @@
       <nav id="mobile-nav">
       <div class="overlay">
           <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">胡帅</a></h1>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">旧时明月</a></h1>
       </div>
     <div class="intrude-less">
         <header id="header" class="inner">
@@ -239,7 +239,7 @@
                 
             </a>
             <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">胡帅</a></h1>
+              <h1 class="header-author"><a href="/" title="回到主页">旧时明月</a></h1>
             </hgroup>
             
             <p class="header-subtitle">旧时明月</p>
@@ -408,6 +408,143 @@
 
 
   
+    <article id="post-static-variable-how2be-assigned" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/12/08/static-variable-how2be-assigned/" class="article-date">
+      <time datetime="2019-12-08T11:00:06.000Z" itemprop="datePublished">2019-12-08</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/12/08/static-variable-how2be-assigned/">java类中静态变量是如何被赋值的</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>我们知道java中类加载的过程分为：加载、连接、初始化，其中连接阶段又分为验证、准备和解析，准备阶段的动作就是为类的静态变量分配内存，并将其设置为一个默认值，java中各种数据类型的默认值如下：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>char</td>
+<td>（空）</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>引用类型</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<p>初始化过程就是为类的静态变量赋予正确的初始值。<br>很多人可能认为静态变量在类中的位置是平行的，位置不同不会导致变量的值不同，这里举两个例子来深刻理解一下准备阶段以及初始化阶段的成员变量的值是如何变化的：<br>例1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        Singleton singleton &#x3D; Singleton.getInstance();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter1: &quot; + Singleton.counter1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter2: &quot; + Singleton.counter2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class Singleton &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter1;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter2 &#x3D; 0;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private static Singleton singleton &#x3D; new Singleton();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private Singleton() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter1++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter2++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static Singleton getInstance() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return singleton;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1: 1</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2: 1</span></pre></td></tr></table></figure>
+
+<p>在main方法中调用了Singleton 类的静态方法getInstance，因此属于对该类的主动使用，因此Singleton 会进行初始化，关于对类的主动使用在我的另外一篇博客“类加载器的阶段分析”<a href="https://blog.csdn.net/weixin_42105936/article/details/100171009中有详细描述。" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42105936/article/details/100171009中有详细描述。</a><br>在初始化阶段发生之前，先会进行准备阶段，也是就为变量赋予默认值，准备阶段完成之后，各个变量的初始值分别为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1：0</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2：0</span></pre></td></tr><tr><td class="code"><pre><span class="line">singleton：null</span></pre></td></tr></table></figure>
+
+<p>接下来就是初始化：为类的静态变量赋予正确的初始值，初始化顺序如下：</p>
+<ol>
+<li>由于counter1，没有额外指定初始值，所以维持默认值0；</li>
+<li>counter2被赋予新的值，仍然为0；</li>
+<li>在给singleton 初始化时，由于使用了new关键字，所以需要执行构造方法，执行counter1++，<pre><code>counter2++后counter1和counter2都自增变成了1；</code></pre></li>
+</ol>
+<p>在初始化阶段完毕之后，counter1为1，counter2为1，因此控制台输出结果如上。<br>例2：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        Singleton singleton &#x3D; Singleton.getInstance();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter1: &quot; + Singleton.counter1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter2: &quot; + Singleton.counter2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class Singleton &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter1;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private static Singleton singleton &#x3D; new Singleton();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private Singleton() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter1++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter2++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter2 &#x3D; 0;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static Singleton getInstance() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return singleton;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1: 1</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2: 0</span></pre></td></tr></table></figure>
+
+<p>例2代码与例1代码的唯一不同，就是成员变量counter2 和singleton的位置不同，于是就会产生疑问：静态成员的位置不同也会导致变量成员值的不同吗？<br>我们还是来分析一下：<br>首先还是准备阶段，给变量依次赋予默认值之后：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1：0</span></pre></td></tr><tr><td class="code"><pre><span class="line">singleton：null</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2：0</span></pre></td></tr></table></figure>
+
+<p>同样类需要初始化，初始化步骤如下：</p>
+<ol>
+<li>由于counter1，没有额外指定初始值，所以维持默认值0；</li>
+<li>在给singleton 初始化时，由于使用了new关键字，所以需要执行构造方法，执行counter1++，<pre><code>counter2++，在此之前，counter1和counter2都是0，自增之后，counter1和counter2都变成了1；</code></pre></li>
+<li>counter2初始化，被赋予新的值，变成0；</li>
+</ol>
+<p>由上面的两个例子加分析后我们得出一个结论：静态变量在初始化时是顺序执行初始化工作的，静态变量的位置不同有可能导致最终的值不同。关键还是要理解准备阶段和初始化阶段JVM的所进行的动作。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JVM/">JVM</a>
+    </div>
+
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
   
 
 </div>
@@ -415,7 +552,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2019 胡帅
+                &copy; 2019 旧时明月
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
