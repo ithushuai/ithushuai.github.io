@@ -7,17 +7,20 @@
   
   
   
-  <title>java类中静态变量是如何被赋值的 | 旧时明月</title>
+  <title>SparseArray | 旧时明月</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我们知道java中类加载的过程分为：加载、连接、初始化，其中连接阶段又分为验证、准备和解析，准备阶段的动作就是为类的静态变量分配内存，并将其设置为一个默认值，java中各种数据类型的默认值如下：    数据类型 默认值    byte 0   short 0   int 0   long 0   float 0.0   double 0.0   char （空）   boolean false">
+  <meta name="description" content="稀疏数组就是一个数组中大部分元素都未被使用或者为0，这种数组会造成内存的浪费，所以可以通过一种压缩的方式来表示稀疏数组的内容。压缩方式：1.记录数组一共有几行几列，有多少个非零的值2.把非零元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模，其转化如下图：压缩后的稀疏数组是一个n行3列的数组，其中第一行分别记录原始数组中的行数、列数和非零元素个数；从第二行开始，每行分别记录原始数组中第1">
+<meta name="keywords" content="sparseArray">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java类中静态变量是如何被赋值的">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;2019&#x2F;12&#x2F;08&#x2F;static-variable-how2be-assigned&#x2F;index.html">
+<meta property="og:title" content="SparseArray">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;2019&#x2F;12&#x2F;08&#x2F;SparseArray&#x2F;index.html">
 <meta property="og:site_name" content="旧时明月">
-<meta property="og:description" content="我们知道java中类加载的过程分为：加载、连接、初始化，其中连接阶段又分为验证、准备和解析，准备阶段的动作就是为类的静态变量分配内存，并将其设置为一个默认值，java中各种数据类型的默认值如下：    数据类型 默认值    byte 0   short 0   int 0   long 0   float 0.0   double 0.0   char （空）   boolean false">
+<meta property="og:description" content="稀疏数组就是一个数组中大部分元素都未被使用或者为0，这种数组会造成内存的浪费，所以可以通过一种压缩的方式来表示稀疏数组的内容。压缩方式：1.记录数组一共有几行几列，有多少个非零的值2.把非零元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模，其转化如下图：压缩后的稀疏数组是一个n行3列的数组，其中第一行分别记录原始数组中的行数、列数和非零元素个数；从第二行开始，每行分别记录原始数组中第1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T11:58:09.606Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190929225552162.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjEwNTkzNg&#x3D;&#x3D;,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-12-08T14:56:34.583Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190929225552162.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjEwNTkzNg&#x3D;&#x3D;,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="旧时明月" type="application/atom+xml">
   
@@ -274,11 +277,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-static-variable-how2be-assigned" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-SparseArray" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2019/12/08/static-variable-how2be-assigned/" class="article-date">
-      <time datetime="2019-12-08T11:00:06.000Z" itemprop="datePublished">2019-12-08</time>
+      <a  href="/2019/12/08/SparseArray/" class="article-date">
+      <time datetime="2019-12-08T14:55:29.000Z" itemprop="datePublished">2019-12-08</time>
 </a>
 
     </div>
@@ -292,7 +295,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java类中静态变量是如何被赋值的
+      SparseArray
     </h1>
   
 
@@ -302,11 +305,15 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JVM/">JVM</a>
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
     </div>
 
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sparseArray/" rel="tag">sparseArray</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -314,82 +321,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>我们知道java中类加载的过程分为：加载、连接、初始化，其中连接阶段又分为验证、准备和解析，准备阶段的动作就是为类的静态变量分配内存，并将其设置为一个默认值，java中各种数据类型的默认值如下：</p>
-<table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>默认值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>byte</td>
-<td>0</td>
-</tr>
-<tr>
-<td>short</td>
-<td>0</td>
-</tr>
-<tr>
-<td>int</td>
-<td>0</td>
-</tr>
-<tr>
-<td>long</td>
-<td>0</td>
-</tr>
-<tr>
-<td>float</td>
-<td>0.0</td>
-</tr>
-<tr>
-<td>double</td>
-<td>0.0</td>
-</tr>
-<tr>
-<td>char</td>
-<td>（空）</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>false</td>
-</tr>
-<tr>
-<td>引用类型</td>
-<td>null</td>
-</tr>
-</tbody></table>
-<p>初始化过程就是为类的静态变量赋予正确的初始值。<br>很多人可能认为静态变量在类中的位置是平行的，位置不同不会导致变量的值不同，这里举两个例子来深刻理解一下准备阶段以及初始化阶段的成员变量的值是如何变化的：<br>例1：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        Singleton singleton &#x3D; Singleton.getInstance();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter1: &quot; + Singleton.counter1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter2: &quot; + Singleton.counter2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class Singleton &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter1;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter2 &#x3D; 0;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private static Singleton singleton &#x3D; new Singleton();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private Singleton() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter1++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter2++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static Singleton getInstance() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return singleton;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+        <p>﻿<strong>稀疏数组</strong>就是一个数组中大部分元素都未被使用或者为0，这种数组会造成内存的浪费，所以可以通过一种压缩的方式来表示稀疏数组的内容。<br><strong>压缩方式：</strong><br>1.记录数组一共有几行几列，有多少个非零的值<br>2.把非零元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模，其转化如下图：<br><img src="https://img-blog.csdnimg.cn/20190929225552162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjEwNTkzNg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>压缩后的稀疏数组是一个n行3列的数组，其中第一行分别记录原始数组中的行数、列数和非零元素个数；从第二行开始，每行分别记录原始数组中第1-n个非零元素的行索引、列索引和元素值。<br>实现代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class SparseArray &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) throws Exception &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;创建原始数组11*11</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] srcArray &#x3D; new int[11][11];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        srcArray[1][2] &#x3D; 1;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        srcArray[2][3] &#x3D; 2;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(srcArray);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------原始数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将二维数组转成稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;获取原始数组的行数和列数</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int srcRows &#x3D; srcArray.length;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int srcColumns &#x3D; srcArray[0].length;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;1.先遍历数组，获得数组中非0数据的个数</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int sum &#x3D; 0;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int[] row : srcArray) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int data : row) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                if (data !&#x3D; 0) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sum++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;2.得到数组中非0数据的个数后，初始化稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] sparseArray &#x3D; new int[sum + 1][3];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;3.给稀疏数组第一行赋值</span></pre></td></tr><tr><td class="code"><pre><span class="line">        sparseArray[0][0] &#x3D; srcRows;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        sparseArray[0][1] &#x3D; srcColumns;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        sparseArray[0][2] &#x3D; sum;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;4.遍历原始数组，将非零数值以及其行和列赋给稀疏数组的相应位置</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int index &#x3D; 1;&#x2F;&#x2F;从稀疏数组的第二行开始</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int i &#x3D; 0; i &lt; srcRows; i++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int j &#x3D; 0; j &lt; srcColumns; j++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                if (srcArray[i][j] !&#x3D; 0) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sparseArray[index][0] &#x3D; i;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sparseArray[index][1] &#x3D; j;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sparseArray[index][2] &#x3D; srcArray[i][j];</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    index++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(sparseArray);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------稀疏数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将稀疏数组恢复成原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;1.获取稀疏数组的第一行的前两个元素，得到原始数组的行和列</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] srcArray2 &#x3D; new int[sparseArray[0][0]][sparseArray[0][1]];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;2.从稀疏数组的第二行开始，获取非零数值及其行和列，赋给原始数组中相应的元素</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int i &#x3D; 1; i &lt; sparseArray.length; i++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            srcArray2[sparseArray[i][0]][sparseArray[i][1]] &#x3D; sparseArray[i][2];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(srcArray2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------原始数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将稀疏数组持久化到本地磁盘</span></pre></td></tr><tr><td class="code"><pre><span class="line">        File file &#x3D; new File(&quot;e:\\array.txt&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        FileWriter fileWriter &#x3D; new FileWriter(file);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int[] row : sparseArray) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int data : row) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                fileWriter.write(data + &quot;\t&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            fileWriter.write(&quot;\r\n&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        fileWriter.close();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将稀疏数组从文件中读取出来</span></pre></td></tr><tr><td class="code"><pre><span class="line">        BufferedReader reader &#x3D; new BufferedReader(new FileReader(file));</span></pre></td></tr><tr><td class="code"><pre><span class="line">        String line;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        List&lt;int[]&gt; list &#x3D; new ArrayList&lt;&gt;();&#x2F;&#x2F;该集合用于保存文件中的每一行数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        while ((line &#x3D; reader.readLine()) !&#x3D; null) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#x2F;&#x2F;通过Stream流处理将文件中每一行数据转化成整型数组 </span></pre></td></tr><tr><td class="code"><pre><span class="line">            list.add(Stream.of(line.split(&quot;\t&quot;)).map(Integer::parseInt).mapToInt(Integer::intValue).toArray());         		</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int row &#x3D; list.size();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int column &#x3D; list.get(0).length;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] sparseArray2 &#x3D; new int[row][column];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            sparseArray2[i] &#x3D; list.get(i);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(sparseArray2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------稀疏数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private static void printArr(int[][] arr) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int[] row : arr) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int data : row) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                System.out.printf(&quot;%d\t&quot;, data);</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            System.out.println();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
-<p>输出结果为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1: 1</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2: 1</span></pre></td></tr></table></figure>
-
-<p>在main方法中调用了Singleton 类的静态方法getInstance，因此属于对该类的主动使用，因此Singleton 会进行初始化，关于对类的主动使用在我的另外一篇博客“类加载器的阶段分析”<a href="https://blog.csdn.net/weixin_42105936/article/details/100171009中有详细描述。" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42105936/article/details/100171009中有详细描述。</a><br>在初始化阶段发生之前，先会进行准备阶段，也是就为变量赋予默认值，准备阶段完成之后，各个变量的初始值分别为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1：0</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2：0</span></pre></td></tr><tr><td class="code"><pre><span class="line">singleton：null</span></pre></td></tr></table></figure>
-
-<p>接下来就是初始化：为类的静态变量赋予正确的初始值，初始化顺序如下：</p>
-<ol>
-<li>由于counter1，没有额外指定初始值，所以维持默认值0；</li>
-<li>counter2被赋予新的值，仍然为0；</li>
-<li>在给singleton 初始化时，由于使用了new关键字，所以需要执行构造方法，执行counter1++，<pre><code>counter2++后counter1和counter2都自增变成了1；</code></pre></li>
-</ol>
-<p>在初始化阶段完毕之后，counter1为1，counter2为1，因此控制台输出结果如上。<br>例2：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        Singleton singleton &#x3D; Singleton.getInstance();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter1: &quot; + Singleton.counter1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter2: &quot; + Singleton.counter2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class Singleton &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter1;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private static Singleton singleton &#x3D; new Singleton();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private Singleton() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter1++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter2++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter2 &#x3D; 0;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static Singleton getInstance() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return singleton;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>输出结果为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1: 1</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2: 0</span></pre></td></tr></table></figure>
-
-<p>例2代码与例1代码的唯一不同，就是成员变量counter2 和singleton的位置不同，于是就会产生疑问：静态成员的位置不同也会导致变量成员值的不同吗？<br>我们还是来分析一下：<br>首先还是准备阶段，给变量依次赋予默认值之后：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1：0</span></pre></td></tr><tr><td class="code"><pre><span class="line">singleton：null</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2：0</span></pre></td></tr></table></figure>
-
-<p>同样类需要初始化，初始化步骤如下：</p>
-<ol>
-<li>由于counter1，没有额外指定初始值，所以维持默认值0；</li>
-<li>在给singleton 初始化时，由于使用了new关键字，所以需要执行构造方法，执行counter1++，<pre><code>counter2++，在此之前，counter1和counter2都是0，自增之后，counter1和counter2都变成了1；</code></pre></li>
-<li>counter2初始化，被赋予新的值，变成0；</li>
-</ol>
-<p>由上面的两个例子加分析后我们得出一个结论：静态变量在初始化时是顺序执行初始化工作的，静态变量的位置不同有可能导致最终的值不同。关键还是要理解准备阶段和初始化阶段JVM的所进行的动作。</p>
 
       
     </div>
@@ -398,13 +332,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2019/12/08/static-variable-how2be-assigned/">java类中静态变量是如何被赋值的</a></p>
+        <p><span>本文标题:</span><a  href="/2019/12/08/SparseArray/">SparseArray</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 旧时明月 的个人博客">旧时明月</a></p>
-        <p><span>发布时间:</span>2019年12月08日 - 19时00分</p>
-        <p><span>最后更新:</span>2019年12月08日 - 19时58分</p>
+        <p><span>发布时间:</span>2019年12月08日 - 22时55分</p>
+        <p><span>最后更新:</span>2019年12月08日 - 22时56分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/12/08/static-variable-how2be-assigned/" title="java类中静态变量是如何被赋值的">http://www.ithushuai.com/2019/12/08/static-variable-how2be-assigned/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.ithushuai.com/2019/12/08/static-variable-how2be-assigned/　　作者: 旧时明月" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/12/08/SparseArray/" title="SparseArray">http://www.ithushuai.com/2019/12/08/SparseArray/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.ithushuai.com/2019/12/08/SparseArray/　　作者: 旧时明月" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -415,15 +349,11 @@
 
 <nav id="article-nav">
   
-    <a  href="/2019/12/08/the-stage-of-classloading/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          the-stage-of-classloading
-        
-      </div>
-    </a>
   
+    <a  href="/2019/12/08/the-stage-of-classloading/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">the-stage-of-classloading</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -506,13 +436,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2019/12/08/the-stage-of-classloading/" title="上一篇: the-stage-of-classloading">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a  href="/2019/12/08/the-stage-of-classloading/" title="下一篇: the-stage-of-classloading">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/SparseArray/">SparseArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/the-stage-of-classloading/">the-stage-of-classloading</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/08/static-variable-how2be-assigned/">java类中静态变量是如何被赋值的</a></li></ul>

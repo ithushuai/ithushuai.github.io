@@ -195,7 +195,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        
+                        <a href="/tags/classLoader/" style="font-size: 10px;">classLoader</a> <a href="/tags/sparseArray/" style="font-size: 10px;">sparseArray</a>
                     </div>
                 </section>
                 
@@ -275,6 +275,191 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-SparseArray" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/12/08/SparseArray/" class="article-date">
+      <time datetime="2019-12-08T14:55:29.000Z" itemprop="datePublished">2019-12-08</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/12/08/SparseArray/">SparseArray</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>﻿<strong>稀疏数组</strong>就是一个数组中大部分元素都未被使用或者为0，这种数组会造成内存的浪费，所以可以通过一种压缩的方式来表示稀疏数组的内容。<br><strong>压缩方式：</strong><br>1.记录数组一共有几行几列，有多少个非零的值<br>2.把非零元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模，其转化如下图：<br><img src="https://img-blog.csdnimg.cn/20190929225552162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjEwNTkzNg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>压缩后的稀疏数组是一个n行3列的数组，其中第一行分别记录原始数组中的行数、列数和非零元素个数；从第二行开始，每行分别记录原始数组中第1-n个非零元素的行索引、列索引和元素值。<br>实现代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class SparseArray &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) throws Exception &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;创建原始数组11*11</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] srcArray &#x3D; new int[11][11];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        srcArray[1][2] &#x3D; 1;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        srcArray[2][3] &#x3D; 2;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(srcArray);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------原始数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将二维数组转成稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;获取原始数组的行数和列数</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int srcRows &#x3D; srcArray.length;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int srcColumns &#x3D; srcArray[0].length;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;1.先遍历数组，获得数组中非0数据的个数</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int sum &#x3D; 0;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int[] row : srcArray) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int data : row) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                if (data !&#x3D; 0) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sum++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;2.得到数组中非0数据的个数后，初始化稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] sparseArray &#x3D; new int[sum + 1][3];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;3.给稀疏数组第一行赋值</span></pre></td></tr><tr><td class="code"><pre><span class="line">        sparseArray[0][0] &#x3D; srcRows;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        sparseArray[0][1] &#x3D; srcColumns;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        sparseArray[0][2] &#x3D; sum;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;4.遍历原始数组，将非零数值以及其行和列赋给稀疏数组的相应位置</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int index &#x3D; 1;&#x2F;&#x2F;从稀疏数组的第二行开始</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int i &#x3D; 0; i &lt; srcRows; i++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int j &#x3D; 0; j &lt; srcColumns; j++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                if (srcArray[i][j] !&#x3D; 0) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sparseArray[index][0] &#x3D; i;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sparseArray[index][1] &#x3D; j;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sparseArray[index][2] &#x3D; srcArray[i][j];</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    index++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(sparseArray);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------稀疏数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将稀疏数组恢复成原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;1.获取稀疏数组的第一行的前两个元素，得到原始数组的行和列</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] srcArray2 &#x3D; new int[sparseArray[0][0]][sparseArray[0][1]];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;2.从稀疏数组的第二行开始，获取非零数值及其行和列，赋给原始数组中相应的元素</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int i &#x3D; 1; i &lt; sparseArray.length; i++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            srcArray2[sparseArray[i][0]][sparseArray[i][1]] &#x3D; sparseArray[i][2];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(srcArray2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------原始数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将稀疏数组持久化到本地磁盘</span></pre></td></tr><tr><td class="code"><pre><span class="line">        File file &#x3D; new File(&quot;e:\\array.txt&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        FileWriter fileWriter &#x3D; new FileWriter(file);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int[] row : sparseArray) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int data : row) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                fileWriter.write(data + &quot;\t&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            fileWriter.write(&quot;\r\n&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        fileWriter.close();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将稀疏数组从文件中读取出来</span></pre></td></tr><tr><td class="code"><pre><span class="line">        BufferedReader reader &#x3D; new BufferedReader(new FileReader(file));</span></pre></td></tr><tr><td class="code"><pre><span class="line">        String line;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        List&lt;int[]&gt; list &#x3D; new ArrayList&lt;&gt;();&#x2F;&#x2F;该集合用于保存文件中的每一行数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        while ((line &#x3D; reader.readLine()) !&#x3D; null) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#x2F;&#x2F;通过Stream流处理将文件中每一行数据转化成整型数组 </span></pre></td></tr><tr><td class="code"><pre><span class="line">            list.add(Stream.of(line.split(&quot;\t&quot;)).map(Integer::parseInt).mapToInt(Integer::intValue).toArray());         		</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int row &#x3D; list.size();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int column &#x3D; list.get(0).length;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] sparseArray2 &#x3D; new int[row][column];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            sparseArray2[i] &#x3D; list.get(i);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(sparseArray2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------稀疏数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private static void printArr(int[][] arr) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int[] row : arr) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int data : row) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                System.out.printf(&quot;%d\t&quot;, data);</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            System.out.println();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sparseArray/" rel="tag">sparseArray</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-the-stage-of-classloading" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/12/08/the-stage-of-classloading/" class="article-date">
+      <time datetime="2019-12-08T14:51:48.000Z" itemprop="datePublished">2019-12-08</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2019/12/08/the-stage-of-classloading/">the-stage-of-classloading</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>﻿@<a href="类加载器的阶段分析">TOC</a></p>
+<p>在java代码中，类的加载、连接与初始化过程都是在程序运行期间完成的</p>
+<h1 id="类加载器的阶段"><a href="#类加载器的阶段" class="headerlink" title="类加载器的阶段"></a>类加载器的阶段</h1><p>类加载过程分为：加载、连接、初始化三个大的阶段，其中连接又可以细分为验证、准备、解析三个过程。</p>
+<h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>查找并加载类的二进制数据，在此阶段，虚拟机完成以下3件事情：</p>
+<ol>
+<li>通过一个类的权限定类名来获取定义此类的二进制字节流。</li>
+<li>将这个字节流所代表的的静态存储结构转化为方法区的运行时数据结构。</li>
+<li>在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口。</li>
+</ol>
+<p>加载.class文件的方式：</p>
+<ol>
+<li>从本地系统中直接加载</li>
+<li>通过网络下载.class文件</li>
+<li>从zip、jar等归档文件中记载</li>
+<li>将java源文件动态编译成.class文件（例如jsp最终会被编译成.class文件）</li>
+</ol>
+<h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><ol>
+<li>验证：确保被加载类的正确性</li>
+<li>准备：为类的静态变量分配内存，并将其初始化为默认值</li>
+<li>解析：把类中的符号引用转化为直接引用</li>
+</ol>
+<blockquote>
+<p><strong>符号引用</strong>以一组符号来描述所引用的目标, 符号可以是任何形式的字面量, 只要使用时能够无歧义的定位到目标即可. 例如, 在Java中, 一个Java类将会编译成一个class文件. 在编译时, Java类并不知道所引用的类的实际地址, 因此只能使用符号引用来代替. 比如org.simple.People类引用了org.simple.Language类, 在编译时People类并不知道Language类的实际内存地址, 因此只能使用符号org.simple.Language来表示Language类的地址<br>————————————————<br>版权声明：本文为CSDN博主「Glenn甘露」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/BraveLoser/article/details/82500474" target="_blank" rel="noopener">https://blog.csdn.net/BraveLoser/article/details/82500474</a></p>
+</blockquote>
+<p>直接引用：通过指针的方式直接定向到特定目标的方法或者成员变量</p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>为类的静态变量赋予正确的初始值。<br>–注：所有的java虚拟机实现必须在每个类或接口被java程序“首次主动使用”时才初始化它们</p>
+<h1 id="主动使用与被动使用"><a href="#主动使用与被动使用" class="headerlink" title="主动使用与被动使用"></a>主动使用与被动使用</h1><p>java程序对类的使用分为主动使用和被动使用</p>
+<h2 id="主动使用"><a href="#主动使用" class="headerlink" title="主动使用"></a>主动使用</h2><p>只要涉及到以下情况，就是对类的主动使用：</p>
+<ol>
+<li>创建类是实例</li>
+<li>访问某个类或接口的静态变量，或者给静态变量赋值</li>
+<li>调用类的静态方法</li>
+<li>反射（Class.forName(“Xxx.class”)）</li>
+<li>初始化一个类的子类（当一个类在初始化时，要求其父类全部已经初始化完毕）</li>
+<li>Java虚拟机启动时被标明为启动类的类（包含main方法的类）</li>
+<li>JDK1.7开始提供的动态语言支持：<br>java.lang.invoke.MethodHandle实例解析结果REF_getstatic，REF_putStatic，REF_invokeStatic句柄对应的类如果没有初始化，则初始化</li>
+</ol>
+<h2 id="被动使用"><a href="#被动使用" class="headerlink" title="被动使用"></a>被动使用</h2><p>除了以上七种情况，其他使用Java类的方式都是被动使用，都不会导致类的初始化</p>
+<p>下面举两个例子来深刻理解一下主动使用和被动使用：<br>例1</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest1 &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(MyChild1.str);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyParent1&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static String str &#x3D; &quot;hello world&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyParent1 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyChild1 extends MyParent1&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyChild1 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>这段代码运行结果为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MyParent1 static block</span></pre></td></tr><tr><td class="code"><pre><span class="line">hello world</span></pre></td></tr></table></figure>
+
+<p>在main方法中执行打印MyChild1.str，由于str是父类MyParent1 中的静态变量，也就是访问了父类的静态变量，触发了父类的主动使用，因此父类会初始化，因而执行静态代码块，输出”MyParent1 static block”，而子类并没有涉及到主动使用的其中情况之一，因此不会初始化。</p>
+<p>例2</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest2 &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(MyChild2.str2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyParent2&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static String str &#x3D; &quot;hello world&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyParent2 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyChild2 extends MyParent2&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static String str2 &#x3D; &quot;welcome&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyChild2 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>这段代码的输出结果为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MyParent2 static block</span></pre></td></tr><tr><td class="code"><pre><span class="line">MyChild2 static block</span></pre></td></tr><tr><td class="code"><pre><span class="line">welcome</span></pre></td></tr></table></figure>
+
+<p>在main方法中执行打印MyChild2.str2，在子类中存在这个静态变量，于是直接访问子类的str2，由于访问静态成员属于主动使用，因此子类初始化。但是为什么父类的静态代码块也执行了呢？不要忘了前面触发主动使用的情况中有一条：子类初始化，必须要其所有父类都先进行初始化，所以先执行父类MyParent2 的静态代码块，再执行子类的静态代码块。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JVM/">JVM</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/classLoader/" rel="tag">classLoader</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-static-variable-how2be-assigned" class="article article-type-post" itemscope itemprop="blogPost">
   
