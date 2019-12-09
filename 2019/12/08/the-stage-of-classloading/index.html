@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>类加载器的阶段 | 旧时明月 | 一个注意形象的程序员</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="classLoader">
+  <meta name="description" content="@TOC 在java代码中，类的加载、连接与初始化过程都是在程序运行期间完成的 类加载器的阶段类加载过程分为：加载、连接、初始化三个大的阶段，其中连接又可以细分为验证、准备、解析三个过程。 加载查找并加载类的二进制数据，在此阶段，虚拟机完成以下3件事情：  通过一个类的权限定类名来获取定义此类的二进制字节流。 将这个字节流所代表的的静态存储结构转化为方法区的运行时数据结构。 在内存中生成一个代表">
+<meta name="keywords" content="classLoader">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类加载器的阶段">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;2019&#x2F;12&#x2F;08&#x2F;the-stage-of-classloading&#x2F;index.html">
+<meta property="og:site_name" content="旧时明月">
+<meta property="og:description" content="@TOC 在java代码中，类的加载、连接与初始化过程都是在程序运行期间完成的 类加载器的阶段类加载过程分为：加载、连接、初始化三个大的阶段，其中连接又可以细分为验证、准备、解析三个过程。 加载查找并加载类的二进制数据，在此阶段，虚拟机完成以下3件事情：  通过一个类的权限定类名来获取定义此类的二进制字节流。 将这个字节流所代表的的静态存储结构转化为方法区的运行时数据结构。 在内存中生成一个代表">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-08T15:14:19.392Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="旧时明月" type="application/atom+xml">
+  
+  <meta name="summary" content="">
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/avatar.png"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">旧时明月</h5>
+        <a href="mailto:ithushuai@163.com" target="_blank" rel="noopener" title="ithushuai@163.com" class="mail">ithushuai@163.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/ithushuai" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>旧时明月 &copy; 2019</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">类加载器的阶段</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">类加载器的阶段</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-12-08T15:13:36.000Z" itemprop="datePublished" class="page-time">
+  2019-12-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JVM/">JVM</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-the-stage-of-classloading" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/classLoader/" rel="tag">classLoader</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#类加载器的阶段"><span class="post-toc-number">1.</span> <span class="post-toc-text">类加载器的阶段</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加载"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">加载</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#连接"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">连接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#初始化"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">初始化</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#主动使用与被动使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">主动使用与被动使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#主动使用"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">主动使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#被动使用"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">被动使用</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>﻿@<a href="类加载器的阶段分析">TOC</a></p>
+<p>在java代码中，类的加载、连接与初始化过程都是在程序运行期间完成的</p>
+<h1 id="类加载器的阶段"><a href="#类加载器的阶段" class="headerlink" title="类加载器的阶段"></a>类加载器的阶段</h1><p>类加载过程分为：加载、连接、初始化三个大的阶段，其中连接又可以细分为验证、准备、解析三个过程。</p>
+<h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>查找并加载类的二进制数据，在此阶段，虚拟机完成以下3件事情：</p>
+<ol>
+<li>通过一个类的权限定类名来获取定义此类的二进制字节流。</li>
+<li>将这个字节流所代表的的静态存储结构转化为方法区的运行时数据结构。</li>
+<li>在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口。</li>
+</ol>
+<p>加载.class文件的方式：</p>
+<ol>
+<li>从本地系统中直接加载</li>
+<li>通过网络下载.class文件</li>
+<li>从zip、jar等归档文件中记载</li>
+<li>将java源文件动态编译成.class文件（例如jsp最终会被编译成.class文件）</li>
+</ol>
+<h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><ol>
+<li>验证：确保被加载类的正确性</li>
+<li>准备：为类的静态变量分配内存，并将其初始化为默认值</li>
+<li>解析：把类中的符号引用转化为直接引用</li>
+</ol>
+<blockquote>
+<p><strong>符号引用</strong>以一组符号来描述所引用的目标, 符号可以是任何形式的字面量, 只要使用时能够无歧义的定位到目标即可. 例如, 在Java中, 一个Java类将会编译成一个class文件. 在编译时, Java类并不知道所引用的类的实际地址, 因此只能使用符号引用来代替. 比如org.simple.People类引用了org.simple.Language类, 在编译时People类并不知道Language类的实际内存地址, 因此只能使用符号org.simple.Language来表示Language类的地址<br>————————————————<br>版权声明：本文为CSDN博主「Glenn甘露」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/BraveLoser/article/details/82500474" target="_blank" rel="noopener">https://blog.csdn.net/BraveLoser/article/details/82500474</a></p>
+</blockquote>
+<p>直接引用：通过指针的方式直接定向到特定目标的方法或者成员变量</p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>为类的静态变量赋予正确的初始值。<br>–注：所有的java虚拟机实现必须在每个类或接口被java程序“首次主动使用”时才初始化它们</p>
+<h1 id="主动使用与被动使用"><a href="#主动使用与被动使用" class="headerlink" title="主动使用与被动使用"></a>主动使用与被动使用</h1><p>java程序对类的使用分为主动使用和被动使用</p>
+<h2 id="主动使用"><a href="#主动使用" class="headerlink" title="主动使用"></a>主动使用</h2><p>只要涉及到以下情况，就是对类的主动使用：</p>
+<ol>
+<li>创建类是实例</li>
+<li>访问某个类或接口的静态变量，或者给静态变量赋值</li>
+<li>调用类的静态方法</li>
+<li>反射（Class.forName(“Xxx.class”)）</li>
+<li>初始化一个类的子类（当一个类在初始化时，要求其父类全部已经初始化完毕）</li>
+<li>Java虚拟机启动时被标明为启动类的类（包含main方法的类）</li>
+<li>JDK1.7开始提供的动态语言支持：<br>java.lang.invoke.MethodHandle实例解析结果REF_getstatic，REF_putStatic，REF_invokeStatic句柄对应的类如果没有初始化，则初始化</li>
+</ol>
+<h2 id="被动使用"><a href="#被动使用" class="headerlink" title="被动使用"></a>被动使用</h2><p>除了以上七种情况，其他使用Java类的方式都是被动使用，都不会导致类的初始化</p>
+<p>下面举两个例子来深刻理解一下主动使用和被动使用：<br>例1</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest1 &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(MyChild1.str);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyParent1&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static String str &#x3D; &quot;hello world&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyParent1 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyChild1 extends MyParent1&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyChild1 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>这段代码运行结果为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MyParent1 static block</span></pre></td></tr><tr><td class="code"><pre><span class="line">hello world</span></pre></td></tr></table></figure>
+
+<p>在main方法中执行打印MyChild1.str，由于str是父类MyParent1 中的静态变量，也就是访问了父类的静态变量，触发了父类的主动使用，因此父类会初始化，因而执行静态代码块，输出”MyParent1 static block”，而子类并没有涉及到主动使用的其中情况之一，因此不会初始化。</p>
+<p>例2</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest2 &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(MyChild2.str2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyParent2&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static String str &#x3D; &quot;hello world&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyParent2 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyChild2 extends MyParent2&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static String str2 &#x3D; &quot;welcome&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyChild2 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>这段代码的输出结果为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MyParent2 static block</span></pre></td></tr><tr><td class="code"><pre><span class="line">MyChild2 static block</span></pre></td></tr><tr><td class="code"><pre><span class="line">welcome</span></pre></td></tr></table></figure>
+
+<p>在main方法中执行打印MyChild2.str2，在子类中存在这个静态变量，于是直接访问子类的str2，由于访问静态成员属于主动使用，因此子类初始化。但是为什么父类的静态代码块也执行了呢？不要忘了前面触发主动使用的情况中有一条：子类初始化，必须要其所有父类都先进行初始化，所以先执行父类MyParent2 的静态代码块，再执行子类的静态代码块。</p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://www.ithushuai.com/2019/12/08/the-stage-of-classloading/" target="_blank" rel="external">http://www.ithushuai.com/2019/12/08/the-stage-of-classloading/</a>
+                </p>
+                <footer><cite><a href="http://www.ithushuai.com">@旧时明月</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/12/08/SparseArray/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">稀疏数组的实现</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="the-stage-of-classloading" data-title="类加载器的阶段" data-url="http://www.ithushuai.com/2019/12/08/the-stage-of-classloading/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "类加载器的阶段",
+    pic: "/img/avatar.png",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://www.ithushuai.com/2019/12/08/the-stage-of-classloading/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
