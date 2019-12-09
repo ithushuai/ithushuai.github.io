@@ -2,13 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
   
-  
-  
-  
-  <title>旧时明月</title>
+  <title>旧时明月 | 一个注意形象的程序员</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="">
   <meta property="og:type" content="website">
 <meta property="og:title" content="旧时明月">
 <meta property="og:url" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;index.html">
@@ -18,832 +19,414 @@
   
     <link rel="alternative" href="/atom.xml" title="旧时明月" type="application/atom+xml">
   
-  
-    <link rel="icon" href="/img/favicon.png">
-  
-  
-  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
-  
+  <meta name="summary" content="">
+  <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  
-    
-    
-  
-  
-      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  
-  <!-- 加载特效 -->
-    <script src="/js/pace.js"></script>
-    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
-  <script>
-      var yiliaConfig = {
-          fancybox: true,
-          animate: true,
-          isHome: true,
-          isPost: false,
-          isArchive: false,
-          isTag: false,
-          isCategory: false,
-          open_in_new: false
-      }
-  </script>
 </head>
+
 <body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+  <div id="loading" class="active"></div>
 
-        <a href="/" class="profilepic">
-            
-            <img lazy-src="/img/avatar.png" class="js-avatar">
-            
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/">旧时明月</a></h1>
-        </hgroup>
-        
-        <p class="header-subtitle">一个注意形象的程序员</p>
-        
-        
-            <form>
-                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
-            </form>
-            <div id="local-search-result"></div>
-        
-        
-            <script type="text/javascript">
-                (function() {
-                    'use strict';
-                    function getMatchData(keyword, data) {
-                        var matchData = [];
-                        for(var i =0;i<data.length;i++){
-                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
-                                matchData.push(data[i])
-                        }
-                        return matchData;
-                    }
-                    var $input = $('#local-search-input');
-                    var $resultContent = $('#local-search-result');
-                    $input.keyup(function(){
-                        $.ajax({
-                            url: '/search.json',
-                            dataType: "json",
-                            success: function( json ) {
-                                var str='<ul class=\"search-result-list\">';                
-                                var keyword = $input.val().trim().toLowerCase();
-                                $resultContent.innerHTML = "";
-                                if ($input.val().trim().length <= 0) {
-                                    $resultContent.empty();
-                                    $('#switch-area').show();
-                                    return;
-                                }
-                                var results = getMatchData(keyword, json);
-                                if(results.length === 0){
-                                    $resultContent.empty();
-                                    $('#switch-area').show();
-                                    return;
-                                } 
-                                for(var i =0; i<results.length; i++){
-                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
-                                }
-                                str += "</ul>";
-                                $resultContent.empty();
-                                $resultContent.append(str);
-                                $('#switch-area').hide();
-                            }
-                        });
-                    });
-                })();
-            </script>
-        
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a  href="/archives/">所有文章</a></li>
-                        
-                            <li><a  href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">玩转开发工具</a></li>
-                        
-                            <li><a  href="/categories/digital">玩转数码</a></li>
-                        
-                            <li><a  href="/categories/algorithm">算法学习</a></li>
-                        
-                            <li><a  href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fl github"  target="_blank" href="https://github.com/ithushuai" title="github">github</a>
-                            
-                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
-                            
-                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/classLoader/" style="font-size: 10px;">classLoader</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/sparseArray/" style="font-size: 10px;">sparseArray</a>
-                    </div>
-                </section>
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://blog.csdn.net/weixin_42105936">csdn</a>
-                    
-                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
-                    
-                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
-                    
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">一个注意形象的程序员</div>
-                </section>
-                
-            </div>
-        </div>
-    </header>
-</div>
-
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">旧时明月</h5>
+        <a href="mailto:ithushuai@163.com" target="_blank" rel="noopener" title="ithushuai@163.com" class="mail">ithushuai@163.com</a>
+      </hgroup>
     </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">旧时明月</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                
-                    <img lazy-src="/img/avatar.png" class="js-avatar">
-                
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect active">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
             </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">旧时明月</a></h1>
-            </hgroup>
-            
-            <p class="header-subtitle">一个注意形象的程序员</p>
-            
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">玩转开发工具</a></li>
-                
-                    <li><a href="/categories/digital">玩转数码</a></li>
-                
-                    <li><a href="/categories/algorithm">算法学习</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                <div class="social">
-                    
-                        <a class="github" target="_blank" href="https://github.com/ithushuai" title="github">github</a>
-                    
-                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
-                    
-                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-                    
-                </div>
-            </nav>
-        </header>
-    </div>
-</nav>
-      <div class="body-wrap">
-  
-    <article id="post-the-stage-of-classloading" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/12/08/the-stage-of-classloading/" class="article-date">
-      <time datetime="2019-12-08T15:13:36.000Z" itemprop="datePublished">2019-12-08</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/12/08/the-stage-of-classloading/">类加载器的阶段</a>
-    </h1>
-  
-
-
-      </header>
+          </li>
       
-    
-    <div class="article-entry" itemprop="articleBody">
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
       
-          
-        <p>﻿@<a href="类加载器的阶段分析">TOC</a></p>
-<p>在java代码中，类的加载、连接与初始化过程都是在程序运行期间完成的</p>
-<h1 id="类加载器的阶段"><a href="#类加载器的阶段" class="headerlink" title="类加载器的阶段"></a>类加载器的阶段</h1><p>类加载过程分为：加载、连接、初始化三个大的阶段，其中连接又可以细分为验证、准备、解析三个过程。</p>
-<h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>查找并加载类的二进制数据，在此阶段，虚拟机完成以下3件事情：</p>
-<ol>
-<li>通过一个类的权限定类名来获取定义此类的二进制字节流。</li>
-<li>将这个字节流所代表的的静态存储结构转化为方法区的运行时数据结构。</li>
-<li>在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口。</li>
-</ol>
-<p>加载.class文件的方式：</p>
-<ol>
-<li>从本地系统中直接加载</li>
-<li>通过网络下载.class文件</li>
-<li>从zip、jar等归档文件中记载</li>
-<li>将java源文件动态编译成.class文件（例如jsp最终会被编译成.class文件）</li>
-</ol>
-<h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><ol>
-<li>验证：确保被加载类的正确性</li>
-<li>准备：为类的静态变量分配内存，并将其初始化为默认值</li>
-<li>解析：把类中的符号引用转化为直接引用</li>
-</ol>
-<blockquote>
-<p><strong>符号引用</strong>以一组符号来描述所引用的目标, 符号可以是任何形式的字面量, 只要使用时能够无歧义的定位到目标即可. 例如, 在Java中, 一个Java类将会编译成一个class文件. 在编译时, Java类并不知道所引用的类的实际地址, 因此只能使用符号引用来代替. 比如org.simple.People类引用了org.simple.Language类, 在编译时People类并不知道Language类的实际内存地址, 因此只能使用符号org.simple.Language来表示Language类的地址<br>————————————————<br>版权声明：本文为CSDN博主「Glenn甘露」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/BraveLoser/article/details/82500474" target="_blank" rel="noopener">https://blog.csdn.net/BraveLoser/article/details/82500474</a></p>
-</blockquote>
-<p>直接引用：通过指针的方式直接定向到特定目标的方法或者成员变量</p>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>为类的静态变量赋予正确的初始值。<br>–注：所有的java虚拟机实现必须在每个类或接口被java程序“首次主动使用”时才初始化它们</p>
-<h1 id="主动使用与被动使用"><a href="#主动使用与被动使用" class="headerlink" title="主动使用与被动使用"></a>主动使用与被动使用</h1><p>java程序对类的使用分为主动使用和被动使用</p>
-<h2 id="主动使用"><a href="#主动使用" class="headerlink" title="主动使用"></a>主动使用</h2><p>只要涉及到以下情况，就是对类的主动使用：</p>
-<ol>
-<li>创建类是实例</li>
-<li>访问某个类或接口的静态变量，或者给静态变量赋值</li>
-<li>调用类的静态方法</li>
-<li>反射（Class.forName(“Xxx.class”)）</li>
-<li>初始化一个类的子类（当一个类在初始化时，要求其父类全部已经初始化完毕）</li>
-<li>Java虚拟机启动时被标明为启动类的类（包含main方法的类）</li>
-<li>JDK1.7开始提供的动态语言支持：<br>java.lang.invoke.MethodHandle实例解析结果REF_getstatic，REF_putStatic，REF_invokeStatic句柄对应的类如果没有初始化，则初始化</li>
-</ol>
-<h2 id="被动使用"><a href="#被动使用" class="headerlink" title="被动使用"></a>被动使用</h2><p>除了以上七种情况，其他使用Java类的方式都是被动使用，都不会导致类的初始化</p>
-<p>下面举两个例子来深刻理解一下主动使用和被动使用：<br>例1</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest1 &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(MyChild1.str);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyParent1&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static String str &#x3D; &quot;hello world&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyParent1 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyChild1 extends MyParent1&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyChild1 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>这段代码运行结果为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MyParent1 static block</span></pre></td></tr><tr><td class="code"><pre><span class="line">hello world</span></pre></td></tr></table></figure>
-
-<p>在main方法中执行打印MyChild1.str，由于str是父类MyParent1 中的静态变量，也就是访问了父类的静态变量，触发了父类的主动使用，因此父类会初始化，因而执行静态代码块，输出”MyParent1 static block”，而子类并没有涉及到主动使用的其中情况之一，因此不会初始化。</p>
-<p>例2</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest2 &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(MyChild2.str2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyParent2&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static String str &#x3D; &quot;hello world&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyParent2 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class MyChild2 extends MyParent2&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static String str2 &#x3D; &quot;welcome&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    static &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;MyChild2 static block&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>这段代码的输出结果为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MyParent2 static block</span></pre></td></tr><tr><td class="code"><pre><span class="line">MyChild2 static block</span></pre></td></tr><tr><td class="code"><pre><span class="line">welcome</span></pre></td></tr></table></figure>
-
-<p>在main方法中执行打印MyChild2.str2，在子类中存在这个静态变量，于是直接访问子类的str2，由于访问静态成员属于主动使用，因此子类初始化。但是为什么父类的静态代码块也执行了呢？不要忘了前面触发主动使用的情况中有一条：子类初始化，必须要其所有父类都先进行初始化，所以先执行父类MyParent2 的静态代码块，再执行子类的静态代码块。</p>
-
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
       
-    </div>
-    
-    <div class="article-info article-info-index">
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/ithushuai" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
       
+          <li class="waves-block waves-effect">
+            <a href="http://www.weibo.com/ysweb" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
       
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JVM/">JVM</a>
-    </div>
-
-
+          <li class="waves-block waves-effect">
+            <a href="/404"  >
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/classLoader/" rel="tag">classLoader</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-SparseArray" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/12/08/SparseArray/" class="article-date">
-      <time datetime="2019-12-08T14:55:29.000Z" itemprop="datePublished">2019-12-08</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/12/08/SparseArray/">稀疏数组的实现</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><strong>稀疏数组</strong>就是一个数组中大部分元素都未被使用或者为0，这种数组会造成内存的浪费，所以可以通过一种压缩的方式来表示稀疏数组的内容。<br><strong>压缩方式：</strong><br>1.记录数组一共有几行几列，有多少个非零的值<br>2.把非零元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模，其转化如下图：<br><img src="https://img-blog.csdnimg.cn/20190929225552162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjEwNTkzNg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>压缩后的稀疏数组是一个n行3列的数组，其中第一行分别记录原始数组中的行数、列数和非零元素个数；从第二行开始，每行分别记录原始数组中第1-n个非零元素的行索引、列索引和元素值。<br>实现代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class SparseArray &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) throws Exception &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;创建原始数组11*11</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] srcArray &#x3D; new int[11][11];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        srcArray[1][2] &#x3D; 1;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        srcArray[2][3] &#x3D; 2;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(srcArray);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------原始数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将二维数组转成稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;获取原始数组的行数和列数</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int srcRows &#x3D; srcArray.length;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int srcColumns &#x3D; srcArray[0].length;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;1.先遍历数组，获得数组中非0数据的个数</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int sum &#x3D; 0;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int[] row : srcArray) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int data : row) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                if (data !&#x3D; 0) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sum++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;2.得到数组中非0数据的个数后，初始化稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] sparseArray &#x3D; new int[sum + 1][3];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;3.给稀疏数组第一行赋值</span></pre></td></tr><tr><td class="code"><pre><span class="line">        sparseArray[0][0] &#x3D; srcRows;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        sparseArray[0][1] &#x3D; srcColumns;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        sparseArray[0][2] &#x3D; sum;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;4.遍历原始数组，将非零数值以及其行和列赋给稀疏数组的相应位置</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int index &#x3D; 1;&#x2F;&#x2F;从稀疏数组的第二行开始</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int i &#x3D; 0; i &lt; srcRows; i++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int j &#x3D; 0; j &lt; srcColumns; j++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                if (srcArray[i][j] !&#x3D; 0) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sparseArray[index][0] &#x3D; i;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sparseArray[index][1] &#x3D; j;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    sparseArray[index][2] &#x3D; srcArray[i][j];</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    index++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(sparseArray);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------稀疏数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将稀疏数组恢复成原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;1.获取稀疏数组的第一行的前两个元素，得到原始数组的行和列</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] srcArray2 &#x3D; new int[sparseArray[0][0]][sparseArray[0][1]];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;2.从稀疏数组的第二行开始，获取非零数值及其行和列，赋给原始数组中相应的元素</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int i &#x3D; 1; i &lt; sparseArray.length; i++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            srcArray2[sparseArray[i][0]][sparseArray[i][1]] &#x3D; sparseArray[i][2];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(srcArray2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------原始数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将稀疏数组持久化到本地磁盘</span></pre></td></tr><tr><td class="code"><pre><span class="line">        File file &#x3D; new File(&quot;e:\\array.txt&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        FileWriter fileWriter &#x3D; new FileWriter(file);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int[] row : sparseArray) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int data : row) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                fileWriter.write(data + &quot;\t&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            fileWriter.write(&quot;\r\n&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        fileWriter.close();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;将稀疏数组从文件中读取出来</span></pre></td></tr><tr><td class="code"><pre><span class="line">        BufferedReader reader &#x3D; new BufferedReader(new FileReader(file));</span></pre></td></tr><tr><td class="code"><pre><span class="line">        String line;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        List&lt;int[]&gt; list &#x3D; new ArrayList&lt;&gt;();&#x2F;&#x2F;该集合用于保存文件中的每一行数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        while ((line &#x3D; reader.readLine()) !&#x3D; null) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#x2F;&#x2F;通过Stream流处理将文件中每一行数据转化成整型数组 </span></pre></td></tr><tr><td class="code"><pre><span class="line">            list.add(Stream.of(line.split(&quot;\t&quot;)).map(Integer::parseInt).mapToInt(Integer::intValue).toArray());         		</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int row &#x3D; list.size();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int column &#x3D; list.get(0).length;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        int[][] sparseArray2 &#x3D; new int[row][column];</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int i &#x3D; 0; i &lt; row; i++) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            sparseArray2[i] &#x3D; list.get(i);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印稀疏数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        printArr(sparseArray2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;-----------稀疏数组↑--------------&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private static void printArr(int[][] arr) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;打印原始数组</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (int[] row : arr) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            for (int data : row) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                System.out.printf(&quot;%d\t&quot;, data);</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            System.out.println();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sparseArray/" rel="tag">sparseArray</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-jdk8features" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/12/08/jdk8features/" class="article-date">
-      <time datetime="2019-12-08T14:53:25.000Z" itemprop="datePublished">2019-12-08</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/12/08/jdk8features/">JDK8新特性之函数式接口</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h2><p>函数式接口在Java中是指：有且仅有一个抽象方法的接口。函数式接口的实现都可以通过JDK8引入的lambda表达式来表达。在java中，只有确保接口中有且仅有一个抽象方法，才能通过lambda顺利地进行推导。</p>
-<h3 id="FunctionalInterface注解"><a href="#FunctionalInterface注解" class="headerlink" title="@FunctionalInterface注解"></a>@FunctionalInterface注解</h3><p>与 @Override 注解的作用类似，Java 8中专门为函数式接口引入了一个新的注解： @FunctionalInterface 。该注 解可用于一个接口的定义上： 一旦使用该注解来定义接口，编译器将会强制检查该接口是否确实有且仅有一个抽象方法，否则将会报错。需要注意的是，即使不使用该注解，只要满足函数式接口的定义，这仍然是一个函数式接口，使用起来都一样。    </p>
-<h3 id="常用函数式接口"><a href="#常用函数式接口" class="headerlink" title="常用函数式接口"></a>常用函数式接口</h3><p>JDK提供了大量常用的函数式接口以丰富Lambda的典型使用场景，它们主要在 java.util.function 包中被提供。 下面是最常用的几个接口及使用示例。</p>
-<h4 id="1-Supplier接口"><a href="#1-Supplier接口" class="headerlink" title="1.Supplier接口"></a>1.Supplier接口</h4><p>java.util.function.Supplier<T> 接口仅包含一个无参的方法： T get() 。用来获取一个泛型参数指定类型的对象数据。要实现该接口，就需要重写get方法并且对外提供一个类型为T的对象。</p>
-<p>示例代码： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoSupplier</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getString</span><span class="params">(Supplier&lt;String&gt; supplier)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        <span class="keyword">return</span> supplier.get();</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        String msgA = <span class="string">"Hello"</span>;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        String msgB = <span class="string">"World"</span>;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(getString(() -&gt; msgA + msgB));</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<h4 id="2-Consumer接口"><a href="#2-Consumer接口" class="headerlink" title="2.Consumer接口"></a>2.Consumer接口</h4><p>java.util.function.Consumer<T> 接口则正好与Supplier接口相反，它不是生产一个数据，而是消费一个数据， 其数据类型由泛型决定。   </p>
-<p>抽象方法：void accept(T t)</p>
-<p>Consumer 接口中包含抽象方法 void accept(T t) ，意为消费一个指定泛型的数据。</p>
-<p>示例代码：   </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoConsumer</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">consumeString</span><span class="params">(Consumer&lt;String&gt; consumer)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        consumer.accept(<span class="string">"Hello"</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125; </span></pre></td></tr><tr><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        consumeString(s -&gt; System.out.println(s));<span class="comment">//这里也可以使用方法引用</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>默认方法：andThen</p>
-<p>以下是andThen方法的JDK源码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">default Consumer&lt;T&gt; andThen(Consumer&lt;? super T&gt; after) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    Objects.requireNonNull(after);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return (T t) -&gt; &#123; accept(t); after.accept(t); &#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>也就是说，如果一个Consumer的实现调用了andThen方法，参数是另一个Consumer实现，则accept方法就是先进行前一个消费任务，再进行后一个消费任务。该方法返回一个Consumer<T>，也就意味着可以在andThen方法后面继续调用andThen方法。</p>
-<p>示例代码： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoConsumerAndThen</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">consumeString</span><span class="params">(Consumer&lt;String&gt; one, Consumer&lt;String&gt; two)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        one.andThen(two).accept(<span class="string">"Hello"</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        consumeString(</span></pre></td></tr><tr><td class="code"><pre><span class="line">                s -&gt; System.out.println(s.toUpperCase()),</span></pre></td></tr><tr><td class="code"><pre><span class="line">                s -&gt; System.out.println(s.toLowerCase()));</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<h4 id="3-Predicate接口"><a href="#3-Predicate接口" class="headerlink" title="3.Predicate接口"></a>3.Predicate接口</h4><p>如果我们需要对某种数据进行判断，并得到一个boolean值，那么可以使用java.util.function.Predicate<T> 接口。</p>
-<p>抽象方法：boolean test(T t)   </p>
-<p>示例代码： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(Predicate&lt;String&gt; predicate)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">boolean</span> isLongerThan5 = predicate.test(<span class="string">"HelloWorld"</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    System.out.println(<span class="string">"字符串长度大于5吗？："</span> + isLongerThan5);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    method(s -&gt; s.length() &gt; <span class="number">5</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>默认方法：and</p>
-<p>JDK源码如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">and</span><span class="params">(Predicate&lt;? <span class="keyword">super</span> T&gt; other)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    Objects.requireNonNull(other);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">return</span> (t) -&gt; test(t) &amp;&amp; other.test(t);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>该方法就是将两个 Predicate 条件使用“与”逻辑连接起来实现“并且”的效果。</p>
-<p>默认方法：or</p>
-<p>JDK源码如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">or</span><span class="params">(Predicate&lt;? <span class="keyword">super</span> T&gt; other)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    Objects.requireNonNull(other);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">return</span> (t) -&gt; test(t) || other.test(t);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>该方法就是将两个 Predicate 条件使用逻辑“或”进行连接。</p>
-<p>默认方法：negate</p>
-<p>JDK源码如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">default</span> Predicate&lt;T&gt; <span class="title">negate</span><span class="params">()</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">return</span> (t) -&gt; !test(t);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>该方法就是将test方法的返回结果进行取反。</p>
-<p>示例代码： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoPredicateMethod</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(Predicate&lt;String&gt; one, Predicate&lt;String&gt; two)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        <span class="keyword">boolean</span> testAnd = one.and(two).test(<span class="string">"HelloWorld"</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(testAnd);<span class="comment">//true</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">        <span class="keyword">boolean</span> testOr = one.or(two).test(<span class="string">"Hello"</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(testOr);<span class="comment">//true</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">        <span class="keyword">boolean</span> testNegate = one.negate().test(<span class="string">"AelloWorld"</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(testNegate);<span class="comment">//true</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        method(s -&gt; s.startsWith(<span class="string">"H"</span>), s -&gt; s.length() &gt; <span class="number">5</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<h4 id="4-Function接口"><a href="#4-Function接口" class="headerlink" title="4.Function接口"></a>4.Function接口</h4><p>java.util.function.Function&lt;T,R&gt; 接口用来根据一个类型的数据得到另一个类型的数据，也就是将T类型数据转换成R类型数据</p>
-<p>抽象方法：R apply(T t)    </p>
-<p>示例代码： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoFunction</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        Integer num = getValue(s -&gt; Integer.parseInt(s));<span class="comment">//此处也可以使用方法引用</span></span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(num);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Integer <span class="title">getValue</span><span class="params">(Function&lt;String, Integer&gt; function)</span></span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        <span class="keyword">return</span> function.apply(<span class="string">"10"</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>默认方法：andThen</p>
-<p>JDK源码如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">default</span> &lt;V&gt; <span class="function">Function&lt;T, V&gt; <span class="title">andThen</span><span class="params">(Function&lt;? <span class="keyword">super</span> R, ? extends V&gt; after)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    Objects.requireNonNull(after);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="keyword">return</span> (T t) -&gt; after.apply(apply(t));</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>该方法用来对多个Function进行组合操作，先执行前一个Function接口实现的apply方法，再将返回的结果作为后一个Function接口实现的apply方法参数进行操作，这跟Consumer接口中的andThen方法差不多。</p>
-<p>示例代码： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoFunctionAndThen</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(Function&lt;String, Integer&gt; one, Function&lt;Integer, Integer&gt; two)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        <span class="keyword">int</span> num = one.andThen(two).apply(<span class="string">"10"</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(num + <span class="number">20</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        method(str -&gt; Integer.parseInt(str), i -&gt; i *= <span class="number">10</span>);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>上述代码在执行method方法时，会现将字符串“10”转成整型10，然后将10乘以10得到的结果返回。</p>
-<p>以上都是JDK8新增的函数式接口，这些接口在JDK8的新特性Stream流中也有广泛的使用，其他JDK提供的函数式接口跟这些类似，在这里就不一一介绍，基本上都是帮助我们省去了自定义函数式接口的操作。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jdk8/" rel="tag">jdk8</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-static-variable-how2be-assigned" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a  href="/2019/12/08/static-variable-how2be-assigned/" class="article-date">
-      <time datetime="2019-12-08T11:00:06.000Z" itemprop="datePublished">2019-12-08</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2019/12/08/static-variable-how2be-assigned/">java类中静态变量是如何被赋值的</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>我们知道java中类加载的过程分为：加载、连接、初始化，其中连接阶段又分为验证、准备和解析，准备阶段的动作就是为类的静态变量分配内存，并将其设置为一个默认值，java中各种数据类型的默认值如下：</p>
-<table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>默认值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>byte</td>
-<td>0</td>
-</tr>
-<tr>
-<td>short</td>
-<td>0</td>
-</tr>
-<tr>
-<td>int</td>
-<td>0</td>
-</tr>
-<tr>
-<td>long</td>
-<td>0</td>
-</tr>
-<tr>
-<td>float</td>
-<td>0.0</td>
-</tr>
-<tr>
-<td>double</td>
-<td>0.0</td>
-</tr>
-<tr>
-<td>char</td>
-<td>（空）</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>false</td>
-</tr>
-<tr>
-<td>引用类型</td>
-<td>null</td>
-</tr>
-</tbody></table>
-<p>初始化过程就是为类的静态变量赋予正确的初始值。<br>很多人可能认为静态变量在类中的位置是平行的，位置不同不会导致变量的值不同，这里举两个例子来深刻理解一下准备阶段以及初始化阶段的成员变量的值是如何变化的：<br>例1：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        Singleton singleton &#x3D; Singleton.getInstance();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter1: &quot; + Singleton.counter1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter2: &quot; + Singleton.counter2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class Singleton &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter1;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter2 &#x3D; 0;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private static Singleton singleton &#x3D; new Singleton();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private Singleton() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter1++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter2++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static Singleton getInstance() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return singleton;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>输出结果为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1: 1</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2: 1</span></pre></td></tr></table></figure>
-
-<p>在main方法中调用了Singleton 类的静态方法getInstance，因此属于对该类的主动使用，因此Singleton 会进行初始化，关于对类的主动使用在我的另外一篇博客“类加载器的阶段分析”<a href="https://blog.csdn.net/weixin_42105936/article/details/100171009中有详细描述。" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42105936/article/details/100171009中有详细描述。</a><br>在初始化阶段发生之前，先会进行准备阶段，也是就为变量赋予默认值，准备阶段完成之后，各个变量的初始值分别为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1：0</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2：0</span></pre></td></tr><tr><td class="code"><pre><span class="line">singleton：null</span></pre></td></tr></table></figure>
-
-<p>接下来就是初始化：为类的静态变量赋予正确的初始值，初始化顺序如下：</p>
-<ol>
-<li>由于counter1，没有额外指定初始值，所以维持默认值0；</li>
-<li>counter2被赋予新的值，仍然为0；</li>
-<li>在给singleton 初始化时，由于使用了new关键字，所以需要执行构造方法，执行counter1++，<pre><code>counter2++后counter1和counter2都自增变成了1；</code></pre></li>
-</ol>
-<p>在初始化阶段完毕之后，counter1为1，counter2为1，因此控制台输出结果如上。<br>例2：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyTest &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static void main(String[] args) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        Singleton singleton &#x3D; Singleton.getInstance();</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter1: &quot; + Singleton.counter1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">        System.out.println(&quot;counter2: &quot; + Singleton.counter2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">class Singleton &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter1;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private static Singleton singleton &#x3D; new Singleton();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    private Singleton() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter1++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        counter2++;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static int counter2 &#x3D; 0;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    public static Singleton getInstance() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return singleton;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>输出结果为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1: 1</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2: 0</span></pre></td></tr></table></figure>
-
-<p>例2代码与例1代码的唯一不同，就是成员变量counter2 和singleton的位置不同，于是就会产生疑问：静态成员的位置不同也会导致变量成员值的不同吗？<br>我们还是来分析一下：<br>首先还是准备阶段，给变量依次赋予默认值之后：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">counter1：0</span></pre></td></tr><tr><td class="code"><pre><span class="line">singleton：null</span></pre></td></tr><tr><td class="code"><pre><span class="line">counter2：0</span></pre></td></tr></table></figure>
-
-<p>同样类需要初始化，初始化步骤如下：</p>
-<ol>
-<li>由于counter1，没有额外指定初始值，所以维持默认值0；</li>
-<li>在给singleton 初始化时，由于使用了new关键字，所以需要执行构造方法，执行counter1++，<pre><code>counter2++，在此之前，counter1和counter2都是0，自增之后，counter1和counter2都变成了1；</code></pre></li>
-<li>counter2初始化，被赋予新的值，变成0；</li>
-</ol>
-<p>由上面的两个例子加分析后我们得出一个结论：静态变量在初始化时是顺序执行初始化工作的，静态变量的位置不同有可能导致最终的值不同。关键还是要理解准备阶段和初始化阶段JVM的所进行的动作。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/JVM/">JVM</a>
-    </div>
-
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-</div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                &copy; 2019 旧时明月
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
-            </div>
-        </div>
-        
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >极客到访数: 
-                            <span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>, </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本页阅读量: 
-                            <span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
-        
-    </div>
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>旧时明月 &copy; 2019</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
 </footer>
 
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">旧时明月</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">旧时明月</h1>
+    <h5 class="subtitle">
+        
+        一个注意形象的程序员
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <ul class="post-list">
+  
+    <li class="post-list-item">
+        <article id="post-the-stage-of-classloading"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/08/the-stage-of-classloading/">类加载器的阶段</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-12-08T15:13:36.000Z" itemprop="datePublished" class="post-time">
+  2019-12-08
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JVM/">JVM</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+         ﻿@ TOC  
+ 在java代码中，类的加载、连接与初始化过程都是在程序运行期间完成的 
+   类加载器的阶段  类加载过程分为：加载、连接、初始化三个大的阶段，其中连接又可以细分为验证、准备、解析三个过程。 
+   加载  查找并加载类的二进制数据，在此阶段，虚拟机完成以下3件事情： 
+ 
+ 通过一个类的权限定类名来获取定义此类的二进制字节流。 
+ 将这个字节流所代表的的静态存储结构转化为方
+    
+    
+        <a href="/2019/12/08/the-stage-of-classloading/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
     
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/classLoader/" rel="tag">classLoader</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-SparseArray"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/08/SparseArray/">稀疏数组的实现</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-12-08T14:55:29.000Z" itemprop="datePublished" class="post-time">
+  2019-12-08
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+          稀疏数组 就是一个数组中大部分元素都未被使用或者为0，这种数组会造成内存的浪费，所以可以通过一种压缩的方式来表示稀疏数组的内容。  压缩方式：  1.记录数组一共有几行几列，有多少个非零的值 2.把非零元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模，其转化如下图：   压缩后的稀疏数组是一个n行3列的数组，其中第一行分别记录原始数组中的行数、列数和非零元素个数；从第二行开始，每行分
+    
+    
+        <a href="/2019/12/08/SparseArray/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sparseArray/" rel="tag">sparseArray</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-jdk8features"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/08/jdk8features/">JDK8新特性之函数式接口</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-12-08T14:53:25.000Z" itemprop="datePublished" class="post-time">
+  2019-12-08
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JAVA/">JAVA</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           函数式接口  函数式接口在Java中是指：有且仅有一个抽象方法的接口。函数式接口的实现都可以通过JDK8引入的lambda表达式来表达。在java中，只有确保接口中有且仅有一个抽象方法，才能通过lambda顺利地进行推导。 
+   @FunctionalInterface注解  与 @Override 注解的作用类似，Java 8中专门为函数式接口引入了一个新的注解： @Functional
+    
+    
+        <a href="/2019/12/08/jdk8features/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jdk8/" rel="tag">jdk8</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-static-variable-how2be-assigned"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/12/08/static-variable-how2be-assigned/">java类中静态变量是如何被赋值的</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-12-08T11:00:06.000Z" itemprop="datePublished" class="post-time">
+  2019-12-08
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JVM/">JVM</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+         我们知道java中类加载的过程分为：加载、连接、初始化，其中连接阶段又分为验证、准备和解析，准备阶段的动作就是为类的静态变量分配内存，并将其设置为一个默认值，java中各种数据类型的默认值如下： 
+ 
+ 
+ 
+ 数据类型 
+ 默认值 
+ 
+ 
+  
+ byte 
+ 0 
+ 
+ 
+ short 
+ 0 
+ 
+ 
+ int 
+ 0 
+ 
+ 
+ long 
+ 0 
+ 
+ 
+ float 
+ 0.0 
+
+    
+    
+        <a href="/2019/12/08/static-variable-how2be-assigned/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+</article>
+
+    </li>
+  
+</ul>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "旧时明月",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://www.ithushuai.com/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
 <script src="/js/main.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            var backgroundnum = 1;
-            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
-            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
-        })
-    </script>
 
 
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'xxxxx', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-
-	<script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-	})();
-	</script>
-
-
-
-<div class="scroll" id="scroll">
-    <a href="#"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
 </div>
-<script>
-    $(document).ready(function() {
-        if ($("#comments").length < 1) {
-            $("#scroll > a:nth-child(2)").hide();
-        };
-    })
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
 </script>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-
-  <script language="javascript">
-    $(function() {
-        $("a[title]").each(function() {
-            var a = $(this);
-            var title = a.attr('title');
-            if (title == undefined || title == "") return;
-            a.data('title', title).removeAttr('title').hover(
-            function() {
-                var offset = a.offset();
-                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
-                    top: offset.top - a.outerHeight() - 15,
-                    left: offset.left + a.outerWidth()/2 + 1
-                }).fadeIn(function() {
-                    var pop = $(this);
-                    setTimeout(function() {
-                        pop.remove();
-                    }, pop.text().length * 800);
-                });
-            }, function() {
-                $("#anchortitlecontainer").remove();
-            });
-        });
-    });
-</script>
+<script src="/js/search.js"></script>
 
 
-  </div>
+
+
+
+
+
+
+
 </body>
 </html>
