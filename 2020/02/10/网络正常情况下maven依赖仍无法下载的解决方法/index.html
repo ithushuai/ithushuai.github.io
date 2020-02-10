@@ -17,15 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>旧时明月</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="旧时明月">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;index.html">
+  <title>网络正常情况下maven依赖仍无法下载的解决方法 | 旧时明月</title>
+  <meta name="description" content="有时候我们在maven项目的pom文件中添加了依赖坐标之后，部分依赖无法正常导入，如果使用的是idea工具，依赖坐标会飘红，此时网络连接正常，刷新maven之后仍无法下载jar包。出现这种情况的原因可能是配置的maven远程仓库中没有指定的jar包，或者网络原因，无论什么原因，如果不想耽误时间，可以采取下面的方法，来进行手动导入依赖到本地maven仓库。 例如，我在pom文件中添加了如下依赖： &amp;">
+<meta name="keywords" content="maven">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络正常情况下maven依赖仍无法下载的解决方法">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;2020&#x2F;02&#x2F;10&#x2F;%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8Bmaven%E4%BE%9D%E8%B5%96%E4%BB%8D%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95&#x2F;index.html">
 <meta property="og:site_name" content="旧时明月">
+<meta property="og:description" content="有时候我们在maven项目的pom文件中添加了依赖坐标之后，部分依赖无法正常导入，如果使用的是idea工具，依赖坐标会飘红，此时网络连接正常，刷新maven之后仍无法下载jar包。出现这种情况的原因可能是配置的maven远程仓库中没有指定的jar包，或者网络原因，无论什么原因，如果不想耽误时间，可以采取下面的方法，来进行手动导入依赖到本地maven仓库。 例如，我在pom文件中添加了如下依赖： &amp;">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="c:%5CUsers%5C%E6%97%A7%E6%97%B6%E6%98%8E%E6%9C%88%5CAppData%5CLocal%5CTemp%5C1581326052068.png">
+<meta property="og:image" content="c:%5CUsers%5C%E6%97%A7%E6%97%B6%E6%98%8E%E6%9C%88%5CAppData%5CLocal%5CTemp%5C1581326164609.png">
+<meta property="og:image" content="c:%5CUsers%5C%E6%97%A7%E6%97%B6%E6%98%8E%E6%9C%88%5CAppData%5CLocal%5CTemp%5C1581326446083.png">
+<meta property="og:updated_time" content="2020-02-10T09:42:31.960Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5C%E6%97%A7%E6%97%B6%E6%98%8E%E6%9C%88%5CAppData%5CLocal%5CTemp%5C1581326052068.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://www.ithushuai.com/index.html">
+  <link rel="canonical" href="http://www.ithushuai.com/2020/02/10/%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8Bmaven%E4%BE%9D%E8%B5%96%E4%BB%8D%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
   
     <link rel="alternate" href="/atom.xml" title="旧时明月" type="application/atom+xml">
   
@@ -335,193 +343,194 @@
 </aside>
 
   
-  <main class="main" role="main">
   
-  <div class="content article-list">
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-网络正常情况下maven依赖仍无法下载的解决方法" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
+    <div class="article-header">
+      
+        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/10/%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8Bmaven%E4%BE%9D%E8%B5%96%E4%BB%8D%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">网络正常情况下maven依赖仍无法下载的解决方法</a>
+    <h1 class="article-title" itemprop="name">
+      网络正常情况下maven依赖仍无法下载的解决方法
     </h1>
   
 
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
+      
+      <div class="article-meta">
+        <span class="article-date">
     <i class="icon icon-calendar-check"></i>
 	<a href="/2020/02/10/%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8Bmaven%E4%BE%9D%E8%B5%96%E4%BB%8D%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="article-date">
-	  <time datetime="2020-02-10T08:57:24.000Z" itemprop="datePublished">2月 10</time>
+	  <time datetime="2020-02-10T08:57:24.000Z" itemprop="datePublished">2020-02-10</time>
 	</a>
 </span>
-    
+        
   <span class="article-category">
     <i class="icon icon-folder"></i>
     <a class="article-category-link" href="/categories/%E5%BC%80%E5%8F%91%E6%97%A5%E5%B8%B8/">开发日常</a>
   </span>
 
-    
+        
   <span class="article-tag">
     <i class="icon icon-tags"></i>
 	<a class="article-tag-link" href="/tags/maven/" rel="tag">maven</a>
   </span>
 
 
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/10/%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8Bmaven%E4%BE%9D%E8%B5%96%E4%BB%8D%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/#comments" class="article-comment-link">评论</a></span>
-    
-  </p>
-</article>
+        
 
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/08/the-stage-of-classloading/">类加载器的阶段</a>
-    </h1>
-  
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/10/%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8Bmaven%E4%BE%9D%E8%B5%96%E4%BB%8D%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>有时候我们在maven项目的pom文件中添加了依赖坐标之后，部分依赖无法正常导入，如果使用的是idea工具，依赖坐标会飘红，此时网络连接正常，刷新maven之后仍无法下载jar包。出现这种情况的原因可能是配置的maven远程仓库中没有指定的jar包，或者网络原因，无论什么原因，如果不想耽误时间，可以采取下面的方法，来进行手动导入依赖到本地maven仓库。</p>
+<p>例如，我在pom文件中添加了如下依赖：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;groupId&gt;org.glassfish.web&lt;&#x2F;groupId&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;artifactId&gt;javax.el&lt;&#x2F;artifactId&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;version&gt;2.2.4&lt;&#x2F;version&gt;&#x2F;&#x2F;依赖无法导入，飘红</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;dependency&gt;</span></pre></td></tr></table></figure>
 
+<p><strong>第一步：</strong>访问网站 <a href="https://mvnrepository.com" target="_blank" rel="noopener">https://mvnrepository.com</a> ，该网站收录了几乎所有的依赖资源，通过关键词进行搜索，比如这里我要搜索“javax.el”，如下：</p>
+<p><img src="C:%5CUsers%5C%E6%97%A7%E6%97%B6%E6%98%8E%E6%9C%88%5CAppData%5CLocal%5CTemp%5C1581326052068.png" alt="1581326052068"></p>
+<p>红圈圈住的就是我们想要的，然后点击超链接进入，找到对应版本：<img src="C:%5CUsers%5C%E6%97%A7%E6%97%B6%E6%98%8E%E6%9C%88%5CAppData%5CLocal%5CTemp%5C1581326164609.png" alt="1581326164609"></p>
+<p>继续点击红圈超链接，点击“jar”，即可下载对应的jar包到本地电脑：</p>
+<p><img src="C:%5CUsers%5C%E6%97%A7%E6%97%B6%E6%98%8E%E6%9C%88%5CAppData%5CLocal%5CTemp%5C1581326446083.png" alt="1581326446083"></p>
+<p><strong>第二步：</strong>安装本地jar包到本地maven仓库：</p>
+<p>有两种方式：</p>
+<ol>
+<li><p>进入jar包所在目录运行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn install:install-file -DgroupId&#x3D;org.glassfish.web -DartifactId&#x3D;javax.el -Dversion&#x3D;2.2.4 -Dfile&#x3D;javax.el-2.2.4.jar -Dpackaging&#x3D;jar</span></pre></td></tr></table></figure>
+</li>
+<li><p>打开cmd直接运行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mvn install:install-file -DgroupId&#x3D;org.glassfish.web -DartifactId&#x3D;javax.el -Dversion&#x3D;2.2.4 -Dfile&#x3D;javax.el-2.2.4.jar -Dpackaging&#x3D;jar -Dfile&#x3D;C:\javax.el-2.2.4.jar</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>使用注意：以上命令不可以直接使用，需要根据自己需要修改DgroupId(groupId)、DartifactId(artifactId)、Dversion(version)以及Dfile对应的下载jar包的路径</p>
+<p>命令执行完之后，jar就会被添加到本地maven仓库，此时idea一般会自动刷新，飘红消失，如果飘红仍未消失，reimport一下maven即可。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://www.ithushuai.com/2020/02/10/%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8Bmaven%E4%BE%9D%E8%B5%96%E4%BB%8D%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="网络正常情况下maven依赖仍无法下载的解决方法" target="_blank" rel="external">http://www.ithushuai.com/2020/02/10/%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8Bmaven%E4%BE%9D%E8%B5%96%E4%BB%8D%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="http://www.ithushuai.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="http://www.ithushuai.com" target="_blank"><span class="text-dark">旧时明月</span><small class="ml-1x">一个注意形象的程序员</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
   </div>
+</div>
+
+
+    </div>
+  </article>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2019/12/08/the-stage-of-classloading/" class="article-date">
-	  <time datetime="2019-12-08T15:13:36.000Z" itemprop="datePublished">12月 8</time>
-	</a>
-</span>
     
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/JVM/">JVM</a>
-  </span>
-
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
     
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/classLoader/" rel="tag">classLoader</a>
-  </span>
+  </section>
 
 
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/08/the-stage-of-classloading/#comments" class="article-comment-link">评论</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/08/SparseArray/">稀疏数组的实现</a>
-    </h1>
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
   
-
-  </div>
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/12/08/the-stage-of-classloading/" title="类加载器的阶段"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2019/12/08/SparseArray/" class="article-date">
-	  <time datetime="2019-12-08T14:55:29.000Z" itemprop="datePublished">12月 8</time>
-	</a>
-</span>
-    
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/sparseArray/" rel="tag">sparseArray</a>
-  </span>
-
-
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/08/SparseArray/#comments" class="article-comment-link">评论</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/08/jdk8features/">JDK8新特性之函数式接口</a>
-    </h1>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
   
-
-  </div>
   
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2019/12/08/jdk8features/" class="article-date">
-	  <time datetime="2019-12-08T14:53:25.000Z" itemprop="datePublished">12月 8</time>
-	</a>
-</span>
+  <div class="bar-right">
     
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/jdk8/" rel="tag">jdk8</a>
-  </span>
-
-
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/08/jdk8features/#comments" class="article-comment-link">评论</a></span>
-    
-  </p>
-</article>
-
-    
-      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/08/static-variable-how2be-assigned/">java类中静态变量是如何被赋值的</a>
-    </h1>
-  
-
-  </div>
-  
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2019/12/08/static-variable-how2be-assigned/" class="article-date">
-	  <time datetime="2019-12-08T11:00:06.000Z" itemprop="datePublished">12月 8</time>
-	</a>
-</span>
-    
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/JVM/">JVM</a>
-  </span>
-
-    
-
-    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/08/static-variable-how2be-assigned/#comments" class="article-comment-link">评论</a></span>
-    
-  </p>
-</article>
-
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
     
   </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-   
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -578,6 +587,33 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
    
 
 
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
 
 
 
