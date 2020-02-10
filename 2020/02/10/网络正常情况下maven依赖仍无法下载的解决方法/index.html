@@ -27,9 +27,9 @@
 <meta property="og:description" content="有时候我们在maven项目的pom文件中添加了依赖坐标之后，部分依赖无法正常导入，如果使用的是idea工具，依赖坐标会飘红，此时网络连接正常，刷新maven之后仍无法下载jar包。出现这种情况的原因可能是配置的maven远程仓库中没有指定的jar包，或者网络原因，无论什么原因，如果不想耽误时间，可以采取下面的方法，来进行手动导入依赖到本地maven仓库。 例如，我在pom文件中添加了如下依赖： &amp;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;images&#x2F;1581326052068.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;images&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;images&#x2F;1.PNG">
 <meta property="og:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;images&#x2F;1581326446083.png">
-<meta property="og:updated_time" content="2020-02-10T10:02:41.467Z">
+<meta property="og:updated_time" content="2020-02-10T10:07:21.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;images&#x2F;1581326052068.png">
   <!-- Canonical links -->
@@ -393,7 +393,7 @@
 <p><strong>第一步：</strong>访问网站 <a href="https://mvnrepository.com" target="_blank" rel="noopener">https://mvnrepository.com</a> ，该网站收录了几乎所有的依赖资源，通过关键词进行搜索，比如这里我要搜索“javax.el”，如下：</p>
 <p><img src="/images/1581326052068.png" alt="1581326052068"></p>
 <p>红圈圈住的就是我们想要的，然后点击超链接进入，找到对应版本：</p>
-<p><img src="/images/1.png" alt="1"></p>
+<p><img src="/images/1.PNG" alt="1"></p>
 <p>继续点击红圈超链接，点击“jar”，即可下载对应的jar包到本地电脑：</p>
 <p><img src="/images/1581326446083.png" alt="1581326446083"></p>
 <p><strong>第二步：</strong>安装本地jar包到本地maven仓库：</p>
