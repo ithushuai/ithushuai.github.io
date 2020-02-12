@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.ithushuai.com/2020/02/12/%E4%BD%BF%E7%94%A8vue-cli%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAvue%E9%A1%B9%E7%9B%AE/</loc>
+    
+    <lastmod>2020-02-12T14:09:47.824Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.ithushuai.com/2020/02/10/%E7%BD%91%E7%BB%9C%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8Bmaven%E4%BE%9D%E8%B5%96%E4%BB%8D%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
     
     <lastmod>2020-02-10T10:08:48.088Z</lastmod>
@@ -37,14 +44,14 @@
   </url>
   
   <url>
-    <loc>http://www.ithushuai.com/about/index.html</loc>
+    <loc>http://www.ithushuai.com/books/index.html</loc>
     
     <lastmod>2019-12-10T11:53:32.617Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.ithushuai.com/books/index.html</loc>
+    <loc>http://www.ithushuai.com/about/index.html</loc>
     
     <lastmod>2019-12-10T11:53:32.617Z</lastmod>
     
