@@ -17,15 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>分类: JAVA | 旧时明月</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="旧时明月">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;categories&#x2F;JAVA&#x2F;index.html">
+  <title>volatile关键字的理解 | 旧时明月</title>
+  <meta name="description" content="volatile是java语言提供的一种稍弱的同步机制，它的作用是能够保证被volatile修饰的变量，每个线程在获取它的值时都能获取到最新的值。 要理解这个原理首先要知道java内存模型：每个线程都有自己的工作内存，线程对变量的所有操作都必须在工作内存中进行 。每个线程都会将运算需要的数据从主内存复制一份到自己的工作内存，等运算结束之后才会刷新到主内存中。  理解了上述模型，就会发现在并发情况下">
+<meta name="keywords" content="volatile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="volatile关键字的理解">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;2020&#x2F;02&#x2F;17&#x2F;volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3&#x2F;index.html">
 <meta property="og:site_name" content="旧时明月">
+<meta property="og:description" content="volatile是java语言提供的一种稍弱的同步机制，它的作用是能够保证被volatile修饰的变量，每个线程在获取它的值时都能获取到最新的值。 要理解这个原理首先要知道java内存模型：每个线程都有自己的工作内存，线程对变量的所有操作都必须在工作内存中进行 。每个线程都会将运算需要的数据从主内存复制一份到自己的工作内存，等运算结束之后才会刷新到主内存中。  理解了上述模型，就会发现在并发情况下">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3&#x2F;1.PNG">
+<meta property="og:updated_time" content="2020-02-17T06:17:45.601Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3&#x2F;1.PNG">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://www.ithushuai.com/categories/JAVA/index.html">
+  <link rel="canonical" href="http://www.ithushuai.com/2020/02/17/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/index.html">
   
     <link rel="alternate" href="/atom.xml" title="旧时明月" type="application/atom+xml">
   
@@ -335,65 +341,192 @@
 </aside>
 
   
-  <main class="main" role="main">
-  <article class="content article article-categories article-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">分类: JAVA</h1>
-      <p class="hidden-xs">共 2 篇文章</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/categories">All</a></li>
-          
-          <li><a href="/categories/开发日常/">开发日常</a></li>
-          
-          <li><a href="/categories/JAVA/">JAVA</a></li>
-          
-          <li><a href="/categories/数据结构与算法/">数据结构与算法</a></li>
-          
-          <li><a href="/categories/JVM/">JVM</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="panel panel-default b-no">
-    <div class="panel-heading" role="tab">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapseJAVA" aria-expanded="true">
-              <i class="icon icon-folder text-active"></i><i class="icon icon-folder-open text"></i>
-              JAVA
-            </a>
-            <small class="text-muted">(Total 2 articles)</small>
-        </h4>
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-volatile关键字的理解" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      volatile关键字的理解
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/02/17/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/" class="article-date">
+	  <time datetime="2020-02-17T06:11:38.000Z" itemprop="datePublished">2020-02-17</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/volatile/" rel="tag">volatile</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/02/17/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
     </div>
-    <div id="collapseJAVA" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingJAVA">
-        <div class="panel-body">
-            <div class="collection">
-              
-                
-<a href="/2020/02/17/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-02-17T06:11:38.000Z" itemprop="datePublished">2020-02-17</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> volatile关键字的理解
-</a>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>volatile是java语言提供的一种稍弱的同步机制，它的作用是能够保证被volatile修饰的变量，每个线程在获取它的值时都能获取到最新的值。</p>
+<p>要理解这个原理首先要知道java内存模型：每个线程都有自己的工作内存，线程对变量的所有操作都必须在工作内存中进行 。每个线程都会将运算需要的数据从主内存复制一份到自己的工作内存，等运算结束之后才会刷新到主内存中。</p>
+<p><img src="/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/1.PNG" alt="1"></p>
+<p>理解了上述模型，就会发现在并发情况下可能会出现数据不一致的现象，例如线程1和线程2同时从主内存中复制了一个变量a=1到自己的工作内存，但是期间线程1先对a进行了操作将值改为2，之后线程2中仍然按照a等于旧值1进行运算，这显然会出现问题。</p>
+<p>于是有了volatile关键字：当一个线程改变了某个变量的值，就会通知其他线程：你们的缓冲区（工作内存）中变量的值已经发生改变了，请重新从主内存中读取新的值。volatile并不意味着线程每次都会去主内存中获取最新的值！</p>
+<p>volatile只能保证变量在各个线程中的可见性，但不能保证变量操作的原子性。意思就是volatile只能保证每个线程在读取到的变量值是最新的，但是不能保证线程对变量的计算、自增等行为的原子性，即即使线程获取到了最新的值，但是在非原子性操作过程中，变量的值仍有可能被其他线程修改。</p>
+<p>volatile的适用场景</p>
+<p>通常来说，使用volatile必须具备以下2个条件： </p>
+<p>1）对变量的写操作不依赖于当前值</p>
+<p>2）该变量没有包含在具有其他变量的不变式中</p>
+<p>通俗来说，就是只有保证对变量的操作具有原子性，才能保证使用volatile关键字的程序在并发时能够正确执行。 值得注意的是变量自增i++，不具有原子性</p>
+<p>下面列出两个现实开发中常用的使用场景：</p>
+<p>1.状态量flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class MyThread extends Thread&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    private volatile static boolean flag &#x3D; true;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    @Override</span></pre></td></tr><tr><td class="code"><pre><span class="line">    public void run() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        while (!flag)&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            doSomething;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
+<p>线程中需要对一个状态量进行判断然后doSomething，这个时候一旦其他线程修改了flag状态，另外一个线程立马就能感知到</p>
+<p>2.双重校验（单例模式）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Singleton &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">	private volatile static Singleton singleton;</span></pre></td></tr><tr><td class="code"><pre><span class="line">	</span></pre></td></tr><tr><td class="code"><pre><span class="line">	&#x2F;&#x2F;创建Singleton实例的方法</span></pre></td></tr><tr><td class="code"><pre><span class="line">	public Singleton getInstance()&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        if(singleton &#x3D;&#x3D; null)&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            synchronized(Singleton.class)&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                if(singleton &#x3D;&#x3D; null)&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    singleton &#x3D; new Singleton();</span></pre></td></tr><tr><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return singleton;</span></pre></td></tr><tr><td class="code"><pre><span class="line">	&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
-              
-                
-<a href="/2019/12/08/jdk8features/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-12-08T14:53:25.000Z" itemprop="datePublished">2019-12-08</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> JDK8新特性之函数式接口
-</a>
+<p>这里可能有人不理解为什么在synchronized代码块中还需要判断一次singleton是否为null？，当内存中没有singleton实例时，也就是singleton == null，假如有两个线程1,2同时判断singleton == null为true，那么都会进入if代码块，线程1获取到锁并执行了创建singleton实例的代码，线程1释放锁，线程2获得锁，如果不加singleton == null的判断，那么线程而会在创建一次single同对象，也就不符合单例模式的规则了。</p>
 
-
-              
-            </div>
-        </div>
+      
     </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://www.ithushuai.com/2020/02/17/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/" title="volatile关键字的理解" target="_blank" rel="external">http://www.ithushuai.com/2020/02/17/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="http://www.ithushuai.com" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="http://www.ithushuai.com" target="_blank"><span class="text-dark">旧时明月</span><small class="ml-1x">一个注意形象的程序员</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
 </div>
+
+
     </div>
   </article>
-   
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/02/14/SpringBoot%E5%A6%82%E4%BD%95%E7%BB%9F%E4%B8%80%E8%A7%84%E8%8C%83%E6%8E%A5%E5%8F%A3%E8%BF%94%E5%9B%9E%E5%80%BC%E4%BB%A5%E5%8F%8A%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="SpringBoot如何统一规范接口返回值以及统一异常处理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipay.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechat.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -446,6 +579,37 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
 
 
 

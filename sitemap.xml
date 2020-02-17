@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.ithushuai.com/2020/02/17/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
+    
+    <lastmod>2020-02-17T06:17:45.601Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.ithushuai.com/2020/02/14/SpringBoot%E5%A6%82%E4%BD%95%E7%BB%9F%E4%B8%80%E8%A7%84%E8%8C%83%E6%8E%A5%E5%8F%A3%E8%BF%94%E5%9B%9E%E5%80%BC%E4%BB%A5%E5%8F%8A%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</loc>
     
     <lastmod>2020-02-14T06:38:59.385Z</lastmod>
@@ -23,14 +30,14 @@
   </url>
   
   <url>
-    <loc>http://www.ithushuai.com/tags/index.html</loc>
+    <loc>http://www.ithushuai.com/repository/index.html</loc>
     
     <lastmod>2019-12-10T11:53:32.619Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.ithushuai.com/repository/index.html</loc>
+    <loc>http://www.ithushuai.com/tags/index.html</loc>
     
     <lastmod>2019-12-10T11:53:32.619Z</lastmod>
     
