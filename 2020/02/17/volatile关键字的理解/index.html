@@ -26,10 +26,10 @@
 <meta property="og:site_name" content="旧时明月">
 <meta property="og:description" content="volatile是java语言提供的一种稍弱的同步机制，它的作用是能够保证被volatile修饰的变量，每个线程在获取它的值时都能获取到最新的值。 要理解这个原理首先要知道java内存模型：每个线程都有自己的工作内存，线程对变量的所有操作都必须在工作内存中进行 。每个线程都会将运算需要的数据从主内存复制一份到自己的工作内存，等运算结束之后才会刷新到主内存中。  理解了上述模型，就会发现在并发情况下">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3&#x2F;1.PNG">
-<meta property="og:updated_time" content="2020-02-17T06:17:45.601Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;2020&#x2F;02&#x2F;17&#x2F;volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3&#x2F;1.PNG">
+<meta property="og:updated_time" content="2020-02-17T06:30:11.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3&#x2F;1.PNG">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;www.ithushuai.com&#x2F;2020&#x2F;02&#x2F;17&#x2F;volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3&#x2F;1.PNG">
   <!-- Canonical links -->
   <link rel="canonical" href="http://www.ithushuai.com/2020/02/17/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/index.html">
   
@@ -386,7 +386,7 @@
       
         <p>volatile是java语言提供的一种稍弱的同步机制，它的作用是能够保证被volatile修饰的变量，每个线程在获取它的值时都能获取到最新的值。</p>
 <p>要理解这个原理首先要知道java内存模型：每个线程都有自己的工作内存，线程对变量的所有操作都必须在工作内存中进行 。每个线程都会将运算需要的数据从主内存复制一份到自己的工作内存，等运算结束之后才会刷新到主内存中。</p>
-<p><img src="/volatile%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/1.PNG" alt="1"></p>
+<p><img src="1.PNG" alt="1"></p>
 <p>理解了上述模型，就会发现在并发情况下可能会出现数据不一致的现象，例如线程1和线程2同时从主内存中复制了一个变量a=1到自己的工作内存，但是期间线程1先对a进行了操作将值改为2，之后线程2中仍然按照a等于旧值1进行运算，这显然会出现问题。</p>
 <p>于是有了volatile关键字：当一个线程改变了某个变量的值，就会通知其他线程：你们的缓冲区（工作内存）中变量的值已经发生改变了，请重新从主内存中读取新的值。volatile并不意味着线程每次都会去主内存中获取最新的值！</p>
 <p>volatile只能保证变量在各个线程中的可见性，但不能保证变量操作的原子性。意思就是volatile只能保证每个线程在读取到的变量值是最新的，但是不能保证线程对变量的计算、自增等行为的原子性，即即使线程获取到了最新的值，但是在非原子性操作过程中，变量的值仍有可能被其他线程修改。</p>
